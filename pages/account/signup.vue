@@ -48,7 +48,7 @@ const submit = async () => {
   const { valid } = await signUpForm.value.validate()
   if (valid) {
     submitting.value = true
-
+    //注册接口
     const { data, error } = await useFetch('/api/account/registration/', {
       method: 'POST',
       body: JSON.stringify(formData.value)

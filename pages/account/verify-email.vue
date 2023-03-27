@@ -10,6 +10,7 @@ const status = ref('')
 
 const verifyEmail = async () => {
   verifying.value = true
+  //验证邮箱接口
   const { data, error } = await useFetch(`/api/account/registration/verify-email/`, {
     method: 'POST',
     body: JSON.stringify({

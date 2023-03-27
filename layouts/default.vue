@@ -29,11 +29,13 @@ const editingConversation = ref(null)
 const deletingConversationIndex = ref(null)
 
 const editConversation = (index) => {
+  //删除对话
   editingConversation.value = conversations.value[index]
 }
 
 const updateConversation = async (index) => {
   editingConversation.value.updating = true
+  //更新对话接口
   const { data, error } = await useAuthFetch(`/api/chat/conversations/${editingConversation.value.id}/`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -48,6 +50,7 @@ const updateConversation = async (index) => {
 
 const deleteConversation = async (index) => {
   deletingConversationIndex.value = index
+  //删除对话接口
   const { data, error } = await useAuthFetch(`/api/chat/conversations/${conversations.value[index].id}/`, {
     method: 'DELETE'
   })
@@ -62,6 +65,7 @@ const deleteConversation = async (index) => {
 
 const clearConversations = async () => {
   deletingConversations.value = true
+  //清楚对话接口
   const { data, error } = await useAuthFetch(`/api/chat/conversations/delete_all`, {
     method: 'DELETE'
   })
@@ -90,6 +94,7 @@ const drawerPermanent = computed(() => {
 })
 
 const signOut = async () => {
+  //登出接口
   const { data, error } = await useFetch('/api/account/logout/', {
     method: 'POST'
   })

@@ -10,6 +10,7 @@ const errorMsg = ref(null)
 const resendEmail = async () => {
   errorMsg.value = null
   sending.value = true
+  //重发邮件接口
   const { data, error } = await useFetch('/api/account/registration/resend-email/', {
     method: 'POST',
   })

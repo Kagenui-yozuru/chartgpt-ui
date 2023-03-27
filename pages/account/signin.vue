@@ -95,6 +95,8 @@ const submit = async () => {
   const { valid } = await signInForm.value.validate()
   if (valid) {
     submitting.value = true
+    
+    //登录接口
     const { data, error } = await useFetch('/api/account/login/', {
       method: 'POST',
       body: JSON.stringify(formData.value)

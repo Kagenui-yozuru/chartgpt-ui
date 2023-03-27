@@ -66,6 +66,7 @@ const fetchReply = async (message) => {
   }, webSearchParams)
 
   try {
+    //对话接口
     await fetchEventSource('/api/conversation/', {
       signal: ctrl.signal,
       method: 'POST',

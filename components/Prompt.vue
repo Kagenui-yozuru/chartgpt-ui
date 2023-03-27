@@ -14,13 +14,14 @@ const props = defineProps({
     required: true
   }
 })
-
+//下面是提示接口
 const addPrompt = async () => {
   if (!newPrompt.value) {
     promptInputErrorMessage.value = 'Please enter a prompt'
     return
   }
   submittingNewPrompt.value = true
+ //添加提示接口
   const { data, error } = await useAuthFetch('/api/chat/prompts/', {
     method: 'POST',
     body: JSON.stringify({
@@ -40,6 +41,7 @@ const editPrompt = (index) => {
 
 const updatePrompt = async (index) => {
   editingPrompt.value.updating = true
+  //更新提示接口
   const { data, error } = await useAuthFetch(`/api/chat/prompts/${editingPrompt.value.id}/`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -59,6 +61,7 @@ const cancelEditPrompt = () => {
 
 const deletePrompt = async (index) => {
   deletingPromptIndex.value = index
+  //删除提示借口
   const { data, error } = await useAuthFetch(`/api/chat/prompts/${prompts.value[index].id}/`, {
     method: 'DELETE'
   })
@@ -70,6 +73,7 @@ const deletePrompt = async (index) => {
 
 const loadPrompts = async () => {
   loadingPrompts.value = true
+  //载入提示接口
   const { data, error } = await useAuthFetch('/api/chat/prompts/')
   if (!error.value) {
     prompts.value = data.value

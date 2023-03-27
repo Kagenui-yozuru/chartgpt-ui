@@ -1,5 +1,6 @@
 
 export const getDefaultConversionData = () => {
+    //获取默认的对话
     return {
         id: null,
         topic: null,
@@ -9,6 +10,7 @@ export const getDefaultConversionData = () => {
 }
 
 export const getConversions = async () => {
+    //获取对话接口
     const { data, error } = await useAuthFetch('/api/chat/conversations/')
     if (!error.value) {
         return data.value
@@ -25,6 +27,7 @@ export const openConversationMessages = async (currentConversation) => {
     const conversation = useConversion()
     conversation.value = Object.assign(conversation.value, currentConversation)
     conversation.value.loadingMessages = true
+    //打开对话接口
     const { data, error } = await useAuthFetch('/api/chat/messages/?conversationId=' + currentConversation.id)
     if (!error.value) {
         conversation.value.messages = data.value
@@ -33,6 +36,7 @@ export const openConversationMessages = async (currentConversation) => {
 }
 
 export const genTitle = async (conversationId) => {
+    //获取对话标题的接口
     const { data, error } = await useAuthFetch('/api/gen_title/', {
         method: 'POST',
         body: {
@@ -63,6 +67,7 @@ const transformData = (list) => {
 
 export const loadSettings = async () => {
     const settings = useSettings()
+    //设置接口
     const { data, error } = await useAuthFetch('/api/chat/settings/', {
         method: 'GET'
     })

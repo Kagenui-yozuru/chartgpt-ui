@@ -25,6 +25,7 @@
           {{ $t('aboutTheModels') }}:
           <a target="_blank" href="https://platform.openai.com/docs/models/overview">https://platform.openai.com/docs/models/overview</a>
         </div>
+        <!-- 获取Models接口 -->
         <div
             v-for="(model, index) in models"
             :key="index"
